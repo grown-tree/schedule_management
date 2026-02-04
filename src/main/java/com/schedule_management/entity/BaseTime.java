@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class WriteTime {
+public class BaseTime {
 
     @CreatedDate
     @Column(updatable = false)//작성된 날짜는 변하면안되기 때문
