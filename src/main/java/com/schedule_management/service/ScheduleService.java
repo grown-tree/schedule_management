@@ -107,4 +107,18 @@ public class ScheduleService {
                 schedule.getUpdatedDate()
         );
     }
+
+    //일정 삭제
+    @Transactional
+    public void deleteSchedule(Long id, ScheduleRequestDto requestDto) {
+        //일정 존재하는지 확인
+        Schedule schedule = scheduleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 일정이 존재하지 않습니다."));
+        //비밀번호 일치하는지 확인
+        if (!schedule.getPassword().equals(requestDto.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        scheduleRepository.delete(schedule);
+    }
 }
