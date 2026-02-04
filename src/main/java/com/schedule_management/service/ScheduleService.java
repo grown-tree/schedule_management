@@ -81,4 +81,30 @@ public class ScheduleService {
                 schedule.getUpdatedDate()
         );
     }
+
+    //일정 수정
+    @Transactional
+    public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto requestDto) {
+        // 1. 해당 일정이 있는지 조회
+        Schedule schedule = scheduleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 일정이 존재하지 않습니다."));
+
+        // 2. 비밀번호 일치 여부 확인
+        if (!schedule.getPassword().equals(requestDto.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 3. 엔티티의 update 메서드 호출 (제목, 작성자명만 변경)
+        schedule.update(requestDto.getTitle(), requestDto.getAuthor());
+
+        // 4. 응답 DTO 반환 (비밀번호 제외)
+        return new ScheduleResponseDto(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getAuthor(),
+                schedule.getCreatedDate(),
+                schedule.getUpdatedDate()
+        );
+    }
 }

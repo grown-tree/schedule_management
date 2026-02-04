@@ -33,4 +33,10 @@ public class Schedule extends BaseTime {
                 this.password = password;
         }
 
+        // 일정 수정 (제목, 작성자명만 수정 가능) 날짜는 자동업뎃
+        public void update(String title, String author) {
+                this.title = title;
+                this.author = author;
+        }
+
 }

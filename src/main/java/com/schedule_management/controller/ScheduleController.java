@@ -35,6 +35,11 @@ public class ScheduleController {
         return ResponseEntity.ok(schedule);
     }
 
+    @PatchMapping("/{id}")
+    public ScheduleResponseDto updateSchedule(@PathVariable Long id, @RequestBody ScheduleRequestDto requestDto) {
+        return scheduleService.updateSchedule(id, requestDto);
+    }
+
 
 
 }
