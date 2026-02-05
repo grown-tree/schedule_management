@@ -12,6 +12,15 @@
 - [x] Lv 2. 일정 조회
 - [x] Lv 3. 일정 수정
 - [x] Lv 4. 일정 삭제
+
+※**과제 제출 시에는 아래 질문을 고민해 보고 답변을 함께 제출해 주세요.**
+
+1. 3 Layer Architecture(Controller, Service, Repository)를 적절히 적용했는지 확인해 보고, 왜 이러한 구조가 필요한지 작성해 주세요.
+- 3 Layer Architecture구조를 적용하여 구현하였습니다. 이 구조는 DB에 저장된 데이터들 중 민감한 데이터들이 코드를 통해 Clinet쪽으로 유출될 가능성을 막아주고(계층간 데이터 전달시 Entity 대신 DTO활용) 오류 발생시 디버깅이나 기능 추가시에도 그 영향범위를 줄여 유지보수에 도움을 줍니다.
+2. `@RequestParam`, `@PathVariable`, `@RequestBody`가 각각 어떤 어노테이션인지, 어떤 특징을 갖고 있는지 작성해 주세요.
+- @RequestParam은 URL에 쿼리 파라미터->?key=value로 사용되고 옵션으로 필수여부를 선택할수있음(required) 기본값은 true 검색 필터, 페이징기능시 주로사용함.
+- @PathVariable은 URI 경로 /user/1 자체에 포함된 변수값을 식별하기위해 사용
+- @RequestBody는 HTTP 요청 본문(Body)에 담긴 데이터(JSON)를 통째로 자바 객체로 변환할 때 사용
 ### ※ schedules ERD
 ![img.png](img.png)
 ### ※ 일정관리 API명세서
