@@ -10,4 +10,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findByAuthor(String author);
     // 작성자명 조건이 없는 경우 전체 조회 및 수정일 기준 내림차순 정렬
     List<Schedule> findAll();
+    //수정일 기준 내림차순 정렬
+    List<Schedule> findAllByOrderByUpdatedDateDesc();
 }

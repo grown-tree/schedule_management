@@ -50,8 +50,8 @@ public class ScheduleService {
             //작성자명이 없을 경우, 모든 일정 조회
             scheduleList = scheduleRepository.findAll();
         }
-        //수정일 기준 기본값 오름차순 반대 = 내림차순 정렬
-        scheduleList.sort(Comparator.comparing(Schedule::getUpdatedDate).reversed());
+
+        scheduleList = scheduleRepository.findAllByOrderByUpdatedDateDesc();
 
         //DTO로 변환 하여 반환(비밀번호제외됨)
         return scheduleList.stream().map(schedule -> new ScheduleResponseDto(
